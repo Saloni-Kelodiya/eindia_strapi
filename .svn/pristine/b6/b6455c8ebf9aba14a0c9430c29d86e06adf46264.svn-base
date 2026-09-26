@@ -1,0 +1,68 @@
+{
+  "collectionName": "components_crew_celebrity_crewmembers",
+  "info": {
+    "displayName": "Crewmembers"
+  },
+  "options": {},
+  "attributes": {
+    "celebrities_profiles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::celebrities-profile.celebrities-profile"
+    },
+    "profile_not_exist": {
+      "type": "boolean"
+    },
+    "characterName": {
+      "type": "enumeration",
+      "enum": [
+        "Director",
+        "Writer",
+        "Makeup Artist ",
+        "Assistant Director",
+        "Producer",
+        "Script Supervisor",
+        "Second Unit Director",
+        "Sound Lead",
+        "Editor",
+        "Costume Designer",
+        "Art Director",
+        "Cinematographer (DP)",
+        "Lighting Lead (Gaffer)",
+        "VFX Supervisor"
+      ]
+    },
+    "realName": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "profile_not_exist"
+            },
+            true
+          ]
+        }
+      }
+    },
+    "photo": {
+      "type": "media",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "profile_not_exist"
+            },
+            true
+          ]
+        }
+      },
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  },
+  "config": {}
+}

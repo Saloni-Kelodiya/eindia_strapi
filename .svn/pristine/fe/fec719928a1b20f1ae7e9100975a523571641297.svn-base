@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscriptions",
+  "info": {
+    "singularName": "subscription",
+    "pluralName": "subscriptions",
+    "displayName": "Subscription"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "plan": {
+      "type": "enumeration",
+      "required": true,
+      "default": "free",
+      "enum": [
+        "free",
+        "monthly",
+        "yearly"
+      ]
+    },
+    "amount": {
+      "type": "decimal",
+      "default": 0
+    },
+    "rupees": {
+      "type": "string",
+      "maxLength": 10
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "isActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "default": "pending",
+      "enum": [
+        "pending",
+        "succeeded",
+        "failed",
+        "refunded"
+      ]
+    },
+    "transactionId": {
+      "type": "string",
+      "maxLength": 100
+    },
+    "paymentProvider": {
+      "type": "string",
+      "default": "stripe",
+      "maxLength": 50
+    }
+  }
+}

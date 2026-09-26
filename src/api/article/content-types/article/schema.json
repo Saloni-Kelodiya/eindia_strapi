@@ -1,0 +1,212 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": "Entertainment news articles"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "maxLength": 80,
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "language": {
+      "type": "enumeration",
+      "default": "en",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "summary": {
+      "type": "text",
+      "maxLength": 200,
+      "required": true
+    },
+    "body": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 500
+    },
+    "hero_image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "gallery": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::gallery.gallery",
+      "mappedBy": "articles"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "articles"
+    },
+    "updated_datetime": {
+      "type": "datetime"
+    },
+    "reading_time": {
+      "type": "integer",
+      "default": 0
+    },
+    "meta_description": {
+      "type": "text"
+    },
+    "canonical_url": {
+      "type": "string"
+    },
+    "primary_image_alt": {
+      "type": "string"
+    },
+    "moderation_status": {
+      "type": "enumeration",
+      "default": "pending",
+      "enum": [
+        "draft",
+        "pending",
+        "published",
+        "archived",
+        "rejected"
+      ]
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "sponsored": {
+      "type": "boolean",
+      "default": false
+    },
+    "sponsor_meta": {
+      "type": "json"
+    },
+    "Authors": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "articles"
+    },
+    "typecontent": {
+      "type": "enumeration",
+      "enum": [
+        "LatestNews",
+        "CelebrityNews",
+        "ViralNews"
+      ]
+    },
+    "movie": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::movie.movie",
+      "inversedBy": "articles"
+    },
+    "related_to": {
+      "type": "enumeration",
+      "enum": [
+        "Movie Reviews",
+        "Music",
+        "Fashion",
+        "Awards"
+      ]
+    },
+    "releaseYear": {
+      "type": "biginteger"
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::genre.genre",
+      "mappedBy": "articles"
+    },
+    "pros_1": {
+      "type": "string"
+    },
+    "pros_2": {
+      "type": "string"
+    },
+    "cons_1": {
+      "type": "string"
+    },
+    "cons_2": {
+      "type": "string"
+    },
+    "web_series": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::web-series.web-series",
+      "inversedBy": "relatedArticles"
+    },
+    "MainCategory": {
+      "type": "enumeration",
+      "enum": [
+        "news",
+        "article"
+      ]
+    },
+    "tv_shows": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::show.show",
+      "inversedBy": "realted_articles"
+    },
+    "comment": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "article"
+    },
+    "watching_platform": {
+      "type": "component",
+      "component": "watching-platform.platform",
+      "repeatable": true
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "video": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::video.video",
+      "inversedBy": "related_articles"
+    },
+    "meta_keywords": {
+      "type": "string"
+    },
+    "h1_title": {
+      "type": "string",
+      "maxLength": 80,
+      "required": true
+    },
+    "views": {
+      "type": "biginteger"
+    }
+  }
+}

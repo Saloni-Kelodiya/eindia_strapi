@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_movie_elements_crewmembers",
+  "info": {
+    "displayName": "Crewmember"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "enumeration",
+      "enum": [
+        "Director",
+        "Producer",
+        "Writer",
+        "Music Director",
+        "Cinematographer",
+        "Editor"
+      ]
+    },
+    "photo": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

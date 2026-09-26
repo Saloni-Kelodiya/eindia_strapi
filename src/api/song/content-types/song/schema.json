@@ -1,0 +1,100 @@
+{
+  "kind": "collectionType",
+  "collectionName": "songs",
+  "info": {
+    "singularName": "song",
+    "pluralName": "songs",
+    "displayName": "Song"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "album": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Platform": {
+      "type": "component",
+      "component": "movie-elements.platform",
+      "repeatable": true
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "songs"
+    },
+    "music_genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::music-genre.music-genre",
+      "mappedBy": "songs"
+    },
+    "releaseDate": {
+      "type": "date"
+    },
+    "body": {
+      "type": "richtext",
+      "required": true,
+      "minLength": 120
+    },
+    "song_artists": {
+      "type": "component",
+      "component": "song-artists.song",
+      "repeatable": true
+    },
+    "language": {
+      "type": "enumeration",
+      "default": "en",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "trending": {
+      "type": "boolean"
+    },
+    "song_singer": {
+      "type": "component",
+      "component": "song-singer.song-singer",
+      "repeatable": true
+    },
+    "metadescription": {
+      "type": "text"
+    },
+    "song_language": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::language.language",
+      "mappedBy": "songs"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "songs"
+    }
+  }
+}

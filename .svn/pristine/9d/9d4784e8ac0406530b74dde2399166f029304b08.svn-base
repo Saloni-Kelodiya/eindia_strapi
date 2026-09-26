@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_web_series_web_series_awards",
+  "info": {
+    "displayName": "web_series_awards"
+  },
+  "options": {},
+  "attributes": {
+    "award_category": {
+      "type": "string"
+    },
+    "award_winnerName": {
+      "type": "string"
+    },
+    "award_organization": {
+      "type": "string"
+    },
+    "award_year": {
+      "type": "string"
+    },
+    "won": {
+      "type": "boolean",
+      "default": false
+    },
+    "award_photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    }
+  },
+  "config": {}
+}

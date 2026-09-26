@@ -1,0 +1,948 @@
+import type { Schema, Struct } from '@strapi/strapi';
+
+export interface AwNomineesList extends Struct.ComponentSchema {
+  collectionName: 'components_aw_nominees_lists';
+  info: {
+    displayName: 'NomineesList';
+  };
+  attributes: {
+    Image: Schema.Attribute.Media<'images' | 'files'>;
+    Name: Schema.Attribute.String;
+    SubTitle: Schema.Attribute.String;
+  };
+}
+
+export interface AwardAward extends Struct.ComponentSchema {
+  collectionName: 'components_award_awards';
+  info: {
+    displayName: 'award';
+  };
+  attributes: {
+    category: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    project: Schema.Attribute.String;
+    won: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    year: Schema.Attribute.String;
+  };
+}
+
+export interface AwardsAwardCategories extends Struct.ComponentSchema {
+  collectionName: 'components_awards_award_categories';
+  info: {
+    displayName: 'AwardCategories';
+  };
+  attributes: {
+    categoryDescription: Schema.Attribute.String;
+    categoryName: Schema.Attribute.String;
+    NomineesList: Schema.Attribute.Component<'aw.nominees-list', true>;
+    winnerImage: Schema.Attribute.Media<'images' | 'files'>;
+    winnerSubTitle: Schema.Attribute.String;
+    winnerTitle: Schema.Attribute.String;
+  };
+}
+
+export interface AwardsNomineesList extends Struct.ComponentSchema {
+  collectionName: 'components_awards_nominees_lists';
+  info: {
+    displayName: 'nomineesList';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images' | 'files', true>;
+    name: Schema.Attribute.String;
+    subTitle: Schema.Attribute.String;
+  };
+}
+
+export interface CareerTimelineCareerTimeline extends Struct.ComponentSchema {
+  collectionName: 'components_career_timeline_career_timelines';
+  info: {
+    displayName: 'CareerTimeline';
+  };
+  attributes: {
+    title: Schema.Attribute.String;
+    year: Schema.Attribute.String;
+  };
+}
+
+export interface CastCelebrityCast extends Struct.ComponentSchema {
+  collectionName: 'components_cast_celebrity_casts';
+  info: {
+    displayName: 'Cast';
+  };
+  attributes: {
+    celebrities_profiles: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::celebrities-profile.celebrities-profile'
+    >;
+    characterName: Schema.Attribute.String;
+  };
+}
+
+export interface CrewCelebrityCrewmembers extends Struct.ComponentSchema {
+  collectionName: 'components_crew_celebrity_crewmembers';
+  info: {
+    displayName: 'Crewmembers';
+  };
+  attributes: {
+    celebrities_profiles: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::celebrities-profile.celebrities-profile'
+    >;
+    characterName: Schema.Attribute.Enumeration<
+      [
+        'Director',
+        'Writer',
+        'Makeup Artist ',
+        'Assistant Director',
+        'Producer',
+        'Script Supervisor',
+        'Second Unit Director',
+        'Sound Lead',
+        'Editor',
+        'Costume Designer',
+        'Art Director',
+        'Cinematographer (DP)',
+        'Lighting Lead (Gaffer)',
+        'VFX Supervisor',
+      ]
+    >;
+    photo: Schema.Attribute.Media<'images' | 'files'>;
+    realName: Schema.Attribute.String;
+  };
+}
+
+export interface FamilyDetailsCelebirity extends Struct.ComponentSchema {
+  collectionName: 'components_family_details_celebirities';
+  info: {
+    displayName: 'Celebirity';
+  };
+  attributes: {
+    brother: Schema.Attribute.String;
+    children: Schema.Attribute.String;
+    father: Schema.Attribute.String;
+    mother: Schema.Attribute.String;
+    sister: Schema.Attribute.String;
+    spouse: Schema.Attribute.String;
+  };
+}
+
+export interface GallaryPhotoItem extends Struct.ComponentSchema {
+  collectionName: 'components_gallary_photo_items';
+  info: {
+    displayName: 'PhotoItem';
+  };
+  attributes: {
+    caption: Schema.Attribute.Text &
+      Schema.Attribute.SetMinMaxLength<{
+        maxLength: 120;
+      }> &
+      Schema.Attribute.DefaultTo<'No Caption Here'>;
+    dress_brandName: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files'> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface MovieElementsAward extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_awards';
+  info: {
+    displayName: 'award';
+  };
+  attributes: {
+    awardStatus: Schema.Attribute.Enumeration<['Won', 'Nominated']>;
+    category: Schema.Attribute.String;
+    iconType: Schema.Attribute.Enumeration<['gold', 'silver']>;
+    name: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+    year: Schema.Attribute.BigInteger;
+  };
+}
+
+export interface MovieElementsBoxOffice extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_box_offices';
+  info: {
+    displayName: 'BoxOffice';
+  };
+  attributes: {
+    budget: Schema.Attribute.String;
+    description: Schema.Attribute.Text;
+    domestic: Schema.Attribute.String;
+    opening: Schema.Attribute.String;
+    overseas: Schema.Attribute.String;
+    verdict: Schema.Attribute.Enumeration<
+      ['Blockbuster', 'Superhit', 'Hit', 'Average', 'Flop']
+    >;
+    worldwideCollection: Schema.Attribute.String;
+  };
+}
+
+export interface MovieElementsCastMember extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_cast_members';
+  info: {
+    displayName: 'CastMember';
+  };
+  attributes: {
+    celebrities_profile: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::celebrities-profile.celebrities-profile'
+    >;
+    characterName: Schema.Attribute.String;
+  };
+}
+
+export interface MovieElementsCrew extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_crews';
+  info: {
+    displayName: 'crew';
+  };
+  attributes: {};
+}
+
+export interface MovieElementsCrewmember extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_crewmembers';
+  info: {
+    displayName: 'Crewmember';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    photo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    role: Schema.Attribute.Enumeration<
+      [
+        'Director',
+        'Producer',
+        'Writer',
+        'Music Director',
+        'Cinematographer',
+        'Editor',
+      ]
+    >;
+  };
+}
+
+export interface MovieElementsMember extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_members';
+  info: {
+    displayName: 'Member';
+  };
+  attributes: {
+    actorName: Schema.Attribute.String;
+    characterName: Schema.Attribute.String;
+    photo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    role: Schema.Attribute.Enumeration<
+      [
+        'Actor',
+        'Actress',
+        'Director',
+        'Producer',
+        'Music Director',
+        'Choreographer',
+      ]
+    >;
+  };
+}
+
+export interface MovieElementsMovieCast extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_movie_casts';
+  info: {
+    displayName: 'MovieCast';
+  };
+  attributes: {};
+}
+
+export interface MovieElementsMovieReview extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_movie_reviews';
+  info: {
+    displayName: 'movie_review';
+  };
+  attributes: {
+    comment: Schema.Attribute.String;
+    movie: Schema.Attribute.Relation<'oneToOne', 'api::movie.movie'>;
+    rating: Schema.Attribute.Decimal;
+    username: Schema.Attribute.String;
+  };
+}
+
+export interface MovieElementsPlatform extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_platforms';
+  info: {
+    displayName: 'Platform';
+  };
+  attributes: {
+    icon: Schema.Attribute.String;
+    name: Schema.Attribute.Enumeration<
+      [
+        'YouTube',
+        'Netflix',
+        'Amazon Prime Video',
+        'Disney+',
+        'JioHotstar',
+        'Max',
+        'Hulu',
+        'Apple TV+',
+        'Paramount+',
+        'Peacock',
+        'ZEE5',
+        'SonyLIV',
+        'MX Player',
+        'Crunchyroll',
+        'BBC iPlayer',
+        'Tubi',
+        'Pluto TV',
+        'Discovery+',
+        'Viki',
+        'Rakuten TV',
+        'The Roku Channel',
+        'Freevee',
+        'ITVX',
+        'MUBI',
+        'Aha',
+        'Hoichoi',
+        'Sun NXT',
+        'Lionsgate Play',
+        'ALTBalaji',
+        'Eros Now',
+        'ShemarooMe',
+        'ManoramaMAX',
+        'Chaupal',
+        'Stage',
+        'Ullu',
+      ]
+    >;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface MovieElementsReviews extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_reviews';
+  info: {
+    displayName: 'reviews';
+  };
+  attributes: {};
+}
+
+export interface MovieElementsSimilarMovies extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_similar_movies';
+  info: {
+    displayName: 'SimilarMovies';
+  };
+  attributes: {
+    movies: Schema.Attribute.Relation<'oneToMany', 'api::movie.movie'>;
+  };
+}
+
+export interface MovieElementsTopCast extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_top_casts';
+  info: {
+    displayName: 'topCast';
+  };
+  attributes: {};
+}
+
+export interface MovieElementsWhereToWatch extends Struct.ComponentSchema {
+  collectionName: 'components_movie_elements_where_to_watches';
+  info: {
+    displayName: 'where_to_watch';
+  };
+  attributes: {
+    platform: Schema.Attribute.Enumeration<
+      [
+        'Theaters',
+        'Netflix',
+        'Amazon Prime',
+        'JioHotstar',
+        'Zee5',
+        'SonyLiv',
+        'YouTube',
+        'Amazon Prime Video',
+        'Disney+',
+        'Max',
+        'Hulu',
+        'Apple TV+',
+        'Paramount+',
+        'Peacock',
+        'MX Player',
+        'Crunchyroll',
+        'BBC iPlayer',
+        'Tubi',
+        'Pluto TV',
+        'Discovery+',
+        'Viki',
+        'Rakuten TV',
+        'The Roku Channel',
+        'Freevee',
+        'ITVX',
+        'MUBI',
+        'Aha',
+        'Hoichoi',
+        'Sun NXT',
+        'Lionsgate Play',
+        'ALTBalaji',
+        'Eros Now',
+        'ShemarooMe',
+        'ManoramaMAX',
+        'Chaupal',
+        'Stage',
+        'Ullu',
+      ]
+    >;
+    url: Schema.Attribute.String;
+    watch_status: Schema.Attribute.Enumeration<
+      ['subscription', 'free', 'rent']
+    >;
+  };
+}
+
+export interface PersonalLifeCelebirity extends Struct.ComponentSchema {
+  collectionName: 'components_personal_life_celebirities';
+  info: {
+    displayName: 'Celebirity';
+  };
+  attributes: {
+    affairs: Schema.Attribute.String;
+    current_address: Schema.Attribute.String;
+    education: Schema.Attribute.String;
+    height: Schema.Attribute.String;
+    hobbies: Schema.Attribute.String;
+    hometown: Schema.Attribute.String;
+    maritalStatus: Schema.Attribute.Enumeration<
+      ['Single', ' Married', 'Divorced']
+    >;
+    nationality: Schema.Attribute.String;
+    netWorth: Schema.Attribute.String;
+    real_name: Schema.Attribute.String;
+    religion: Schema.Attribute.String;
+  };
+}
+
+export interface RelatedCelebrityRelatedCelebrity
+  extends Struct.ComponentSchema {
+  collectionName: 'components_related_celebrity_related_celebrities';
+  info: {
+    displayName: 'Related-Celebrity';
+  };
+  attributes: {
+    celebrities_profiles: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::celebrities-profile.celebrities-profile'
+    >;
+    relation: Schema.Attribute.String;
+  };
+}
+
+export interface SeasonsSeasons extends Struct.ComponentSchema {
+  collectionName: 'components_seasons_seasons';
+  info: {
+    displayName: 'Seasons';
+  };
+  attributes: {
+    awards: Schema.Attribute.Component<'web-series.web-series-awards', true>;
+    cast: Schema.Attribute.Component<'cast-celebrity.cast', true>;
+    crew: Schema.Attribute.Component<'crew-celebrity.crewmembers', true>;
+    episodes_list: Schema.Attribute.Component<'web-series.episodes-list', true>;
+    faqs: Schema.Attribute.Component<'web-series.faqs', true>;
+    platform: Schema.Attribute.Enumeration<
+      [
+        'Theaters',
+        'Netflix',
+        'Amazon Prime',
+        'JioHotstar',
+        'Zee5',
+        'SonyLiv',
+        'YouTube',
+        'Amazon Prime Video',
+        'Disney+',
+        'Max',
+        'Hulu',
+        'Apple TV+',
+        'Paramount+',
+        'Peacock',
+        'MX Player',
+        'Crunchyroll',
+        'BBC iPlayer',
+        'Tubi',
+        'Pluto TV',
+        'Discovery+',
+        'Viki',
+        'Rakuten TV',
+        'The Roku Channel',
+        'Freevee',
+        'ITVX',
+        'MUBI',
+        'Aha',
+        'Hoichoi',
+        'Sun NXT',
+        'Lionsgate Play',
+        'ALTBalaji',
+        'Eros Now',
+        'ShemarooMe',
+        'ManoramaMAX',
+        'Chaupal',
+        'Stage',
+        'Ullu',
+      ]
+    >;
+    season_description: Schema.Attribute.Blocks;
+    season_episodes: Schema.Attribute.Integer;
+    season_number: Schema.Attribute.Integer;
+    season_rating: Schema.Attribute.Decimal;
+    season_releaseDate: Schema.Attribute.Date;
+    season_reviews: Schema.Attribute.Component<
+      'web-series.season-reviews',
+      true
+    >;
+    season_title: Schema.Attribute.String;
+    season_trailer: Schema.Attribute.String;
+    season_url: Schema.Attribute.String;
+    season_votes: Schema.Attribute.String;
+    tag: Schema.Attribute.Relation<'oneToOne', 'api::tag.tag'>;
+    watch_status: Schema.Attribute.Enumeration<
+      ['Free', 'Subscription', 'Coming Soon']
+    >;
+  };
+}
+
+export interface SeoSeoInfo extends Struct.ComponentSchema {
+  collectionName: 'components_seo_seo_infos';
+  info: {
+    displayName: 'seo-info';
+  };
+  attributes: {
+    h1_heading: Schema.Attribute.Text;
+    page_description: Schema.Attribute.Blocks;
+    seo_description: Schema.Attribute.Text;
+    seo_keywords: Schema.Attribute.Text;
+    seo_title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedMedia extends Struct.ComponentSchema {
+  collectionName: 'components_shared_media';
+  info: {
+    displayName: 'Media';
+    icon: 'file-video';
+  };
+  attributes: {
+    file: Schema.Attribute.Media<'images' | 'files' | 'videos'>;
+  };
+}
+
+export interface SharedQuote extends Struct.ComponentSchema {
+  collectionName: 'components_shared_quotes';
+  info: {
+    displayName: 'Quote';
+    icon: 'indent';
+  };
+  attributes: {
+    body: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface SharedRichText extends Struct.ComponentSchema {
+  collectionName: 'components_shared_rich_texts';
+  info: {
+    description: '';
+    displayName: 'Rich text';
+    icon: 'align-justify';
+  };
+  attributes: {
+    body: Schema.Attribute.RichText;
+  };
+}
+
+export interface SharedSeo extends Struct.ComponentSchema {
+  collectionName: 'components_shared_seos';
+  info: {
+    description: '';
+    displayName: 'Seo';
+    icon: 'allergies';
+    name: 'Seo';
+  };
+  attributes: {
+    metaDescription: Schema.Attribute.Text & Schema.Attribute.Required;
+    metaTitle: Schema.Attribute.String & Schema.Attribute.Required;
+    shareImage: Schema.Attribute.Media<'images'>;
+  };
+}
+
+export interface SharedSlider extends Struct.ComponentSchema {
+  collectionName: 'components_shared_sliders';
+  info: {
+    description: '';
+    displayName: 'Slider';
+    icon: 'address-book';
+  };
+  attributes: {
+    files: Schema.Attribute.Media<'images', true>;
+  };
+}
+
+export interface SocialMediaAccountSocialAccount
+  extends Struct.ComponentSchema {
+  collectionName: 'components_social_media_account_social_accounts';
+  info: {
+    displayName: 'Social-Account';
+  };
+  attributes: {
+    followers: Schema.Attribute.String;
+    platform: Schema.Attribute.Enumeration<
+      ['Instagram', 'Twitter', 'Facebook', 'YouTube']
+    >;
+    profileurl: Schema.Attribute.String;
+    username: Schema.Attribute.String;
+    verified: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+  };
+}
+
+export interface SongArtistsSong extends Struct.ComponentSchema {
+  collectionName: 'components_song_artists_songs';
+  info: {
+    displayName: 'Song';
+  };
+  attributes: {
+    artist_name: Schema.Attribute.String;
+    artist_profile: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::celebrities-profile.celebrities-profile'
+    >;
+    profile_Notexist: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface SongSingerSongSinger extends Struct.ComponentSchema {
+  collectionName: 'components_song_singer_song_singers';
+  info: {
+    displayName: 'song_singer';
+  };
+  attributes: {
+    profile_Not_exist: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    singer_name: Schema.Attribute.String;
+    singer_profile: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::celebrities-profile.celebrities-profile'
+    >;
+  };
+}
+
+export interface TableTableRowsTableRows extends Struct.ComponentSchema {
+  collectionName: 'components_table_table_rows_table_rows';
+  info: {
+    displayName: 'tableRows';
+  };
+  attributes: {
+    age: Schema.Attribute.String;
+    name: Schema.Attribute.String;
+    profession: Schema.Attribute.String;
+  };
+}
+
+export interface TvShowsTvShowsAwards extends Struct.ComponentSchema {
+  collectionName: 'components_tv_shows_tv_shows_awards';
+  info: {
+    displayName: 'tv-shows-awards';
+  };
+  attributes: {
+    award_name: Schema.Attribute.String;
+    award_organization: Schema.Attribute.String;
+    award_photo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    award_winnername: Schema.Attribute.String;
+    award_year: Schema.Attribute.String;
+    won: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface TvShowsTvShowsReviews extends Struct.ComponentSchema {
+  collectionName: 'components_tv_shows_tv_shows_reviews';
+  info: {
+    displayName: 'tv-shows-reviews';
+  };
+  attributes: {
+    comment: Schema.Attribute.Text;
+    rating: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    username: Schema.Attribute.String;
+  };
+}
+
+export interface UpcomingProjectsCelebirityProjects
+  extends Struct.ComponentSchema {
+  collectionName: 'components_upcoming_projects_celebirity_projects';
+  info: {
+    displayName: 'CelebirityProjects';
+  };
+  attributes: {
+    discription: Schema.Attribute.Text;
+    poster: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    projecttype: Schema.Attribute.Enumeration<
+      ['Movie', 'Web Series', 'TV Show', 'Music Video', 'OTT Film']
+    >;
+    releaseDate: Schema.Attribute.Date;
+    role: Schema.Attribute.String;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface WatchingPlatformPlatform extends Struct.ComponentSchema {
+  collectionName: 'components_watching_platform_platforms';
+  info: {
+    displayName: 'Platform';
+  };
+  attributes: {
+    platform: Schema.Attribute.Enumeration<
+      [
+        'Amazon Prime',
+        'Netflix',
+        'SonyLIV',
+        'JioHotstar',
+        'Zee5',
+        'Stage',
+        'YouTube',
+        'Amazon Prime Video',
+        'Disney+',
+        'Max',
+        'Hulu',
+        'Apple TV+',
+        'Paramount+',
+        'MX Player',
+        'Crunchyroll',
+        'BBC iPlayer',
+        'Tubi',
+        'Pluto TV',
+        'Discovery+',
+        'Viki',
+        'Rakuten TV',
+        'The Roku Channel',
+        'Freevee',
+        'ITVX',
+        'MUBI',
+        'Aha',
+        'Hoichoi',
+        'Sun NXT',
+        'Lionsgate Play',
+        'ALTBalaji',
+        'Eros Now',
+        'ShemarooMe',
+        'ManoramaMAX',
+        'Chaupal',
+        'Ullu',
+      ]
+    >;
+  };
+}
+
+export interface WebSeriesBoxOfficeWebSeriesBoxOffice
+  extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_box_office_web_series_box_offices';
+  info: {
+    displayName: 'Web Series Box-office';
+  };
+  attributes: {
+    earning: Schema.Attribute.String;
+    season: Schema.Attribute.Integer;
+  };
+}
+
+export interface WebSeriesEpisodesList extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_episodes_lists';
+  info: {
+    displayName: 'episodes_list';
+  };
+  attributes: {
+    description: Schema.Attribute.Text;
+    duration: Schema.Attribute.String;
+    episodes_number: Schema.Attribute.Integer;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    rating: Schema.Attribute.Decimal;
+    release_date: Schema.Attribute.Date;
+    title: Schema.Attribute.String;
+  };
+}
+
+export interface WebSeriesFaqs extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_faqs';
+  info: {
+    displayName: 'faqs';
+  };
+  attributes: {
+    answer: Schema.Attribute.Text;
+    question: Schema.Attribute.String;
+  };
+}
+
+export interface WebSeriesSeasonGallery extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_season_galleries';
+  info: {
+    displayName: 'season_gallery';
+  };
+  attributes: {
+    caption: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    tag: Schema.Attribute.Enumeration<['POSTER,', 'PROMO,', 'BTS']>;
+  };
+}
+
+export interface WebSeriesSeasonReviews extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_season_reviews';
+  info: {
+    displayName: 'season_reviews';
+  };
+  attributes: {
+    comment: Schema.Attribute.Text;
+    rating: Schema.Attribute.Integer;
+    username: Schema.Attribute.String;
+  };
+}
+
+export interface WebSeriesSeasonVideos extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_season_videos';
+  info: {
+    displayName: 'season_videos';
+  };
+  attributes: {
+    duration: Schema.Attribute.String;
+    tag: Schema.Attribute.Enumeration<
+      ['TEASER, ', 'TRAILER,', ' BTS,', ' CLIP']
+    >;
+    title: Schema.Attribute.String;
+    video_id: Schema.Attribute.String;
+  };
+}
+
+export interface WebSeriesSeasonVotes extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_season_votes';
+  info: {
+    displayName: 'season_votes';
+  };
+  attributes: {};
+}
+
+export interface WebSeriesWebSeries extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_web_series';
+  info: {
+    displayName: 'web_series_similar';
+  };
+  attributes: {
+    related_web_series: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::web-series.web-series'
+    >;
+  };
+}
+
+export interface WebSeriesWebSeriesAwards extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_web_series_awards';
+  info: {
+    displayName: 'web_series_awards';
+  };
+  attributes: {
+    award_category: Schema.Attribute.String;
+    award_organization: Schema.Attribute.String;
+    award_winnerName: Schema.Attribute.String;
+    award_year: Schema.Attribute.String;
+    won: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface WebSeriesWebSeriesReviews extends Struct.ComponentSchema {
+  collectionName: 'components_web_series_web_series_reviews';
+  info: {
+    displayName: 'web_series_reviews';
+  };
+  attributes: {
+    comment: Schema.Attribute.Text;
+    rating: Schema.Attribute.Integer &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 5;
+        },
+        number
+      >;
+    username: Schema.Attribute.String;
+  };
+}
+
+export interface WebStorySlide extends Struct.ComponentSchema {
+  collectionName: 'components_web_story_slides';
+  info: {
+    displayName: 'Slide';
+  };
+  attributes: {
+    ctaText: Schema.Attribute.String;
+    ctaUrl: Schema.Attribute.String;
+    description: Schema.Attribute.RichText;
+    heading: Schema.Attribute.String;
+    image: Schema.Attribute.Media<'images' | 'files'>;
+  };
+}
+
+declare module '@strapi/strapi' {
+  export namespace Public {
+    export interface ComponentSchemas {
+      'aw.nominees-list': AwNomineesList;
+      'award.award': AwardAward;
+      'awards.award-categories': AwardsAwardCategories;
+      'awards.nominees-list': AwardsNomineesList;
+      'career-timeline.career-timeline': CareerTimelineCareerTimeline;
+      'cast-celebrity.cast': CastCelebrityCast;
+      'crew-celebrity.crewmembers': CrewCelebrityCrewmembers;
+      'family-details.celebirity': FamilyDetailsCelebirity;
+      'gallary.photo-item': GallaryPhotoItem;
+      'movie-elements.award': MovieElementsAward;
+      'movie-elements.box-office': MovieElementsBoxOffice;
+      'movie-elements.cast-member': MovieElementsCastMember;
+      'movie-elements.crew': MovieElementsCrew;
+      'movie-elements.crewmember': MovieElementsCrewmember;
+      'movie-elements.member': MovieElementsMember;
+      'movie-elements.movie-cast': MovieElementsMovieCast;
+      'movie-elements.movie-review': MovieElementsMovieReview;
+      'movie-elements.platform': MovieElementsPlatform;
+      'movie-elements.reviews': MovieElementsReviews;
+      'movie-elements.similar-movies': MovieElementsSimilarMovies;
+      'movie-elements.top-cast': MovieElementsTopCast;
+      'movie-elements.where-to-watch': MovieElementsWhereToWatch;
+      'personal-life.celebirity': PersonalLifeCelebirity;
+      'related-celebrity.related-celebrity': RelatedCelebrityRelatedCelebrity;
+      'seasons.seasons': SeasonsSeasons;
+      'seo.seo-info': SeoSeoInfo;
+      'shared.media': SharedMedia;
+      'shared.quote': SharedQuote;
+      'shared.rich-text': SharedRichText;
+      'shared.seo': SharedSeo;
+      'shared.slider': SharedSlider;
+      'social-media-account.social-account': SocialMediaAccountSocialAccount;
+      'song-artists.song': SongArtistsSong;
+      'song-singer.song-singer': SongSingerSongSinger;
+      'table-table-rows.table-rows': TableTableRowsTableRows;
+      'tv-shows.tv-shows-awards': TvShowsTvShowsAwards;
+      'tv-shows.tv-shows-reviews': TvShowsTvShowsReviews;
+      'upcoming-projects.celebirity-projects': UpcomingProjectsCelebirityProjects;
+      'watching-platform.platform': WatchingPlatformPlatform;
+      'web-series-box-office.web-series-box-office': WebSeriesBoxOfficeWebSeriesBoxOffice;
+      'web-series.episodes-list': WebSeriesEpisodesList;
+      'web-series.faqs': WebSeriesFaqs;
+      'web-series.season-gallery': WebSeriesSeasonGallery;
+      'web-series.season-reviews': WebSeriesSeasonReviews;
+      'web-series.season-videos': WebSeriesSeasonVideos;
+      'web-series.season-votes': WebSeriesSeasonVotes;
+      'web-series.web-series': WebSeriesWebSeries;
+      'web-series.web-series-awards': WebSeriesWebSeriesAwards;
+      'web-series.web-series-reviews': WebSeriesWebSeriesReviews;
+      'web-story.slide': WebStorySlide;
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "photo_posts",
+  "info": {
+    "singularName": "photo-post",
+    "pluralName": "photo-posts",
+    "displayName": "Photo Post"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "isPremium": {
+      "type": "boolean",
+      "default": false
+    },
+    "likes": {
+      "type": "integer",
+      "default": 0
+    },
+    "views": {
+      "type": "integer",
+      "default": 0
+    },
+    "author": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "tags": {
+      "type": "string"
+    }
+  }
+}

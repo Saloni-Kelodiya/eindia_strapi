@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_movie_elements_similar_movies",
+  "info": {
+    "displayName": "SimilarMovies"
+  },
+  "options": {},
+  "attributes": {
+    "movies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::movie.movie"
+    }
+  },
+  "config": {}
+}

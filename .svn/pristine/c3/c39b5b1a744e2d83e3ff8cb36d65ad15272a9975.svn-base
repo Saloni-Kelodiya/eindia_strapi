@@ -1,0 +1,127 @@
+{
+  "collectionName": "components_seasons_seasons",
+  "info": {
+    "displayName": "Seasons"
+  },
+  "options": {},
+  "attributes": {
+    "season_number": {
+      "type": "integer"
+    },
+    "season_url": {
+      "type": "string"
+    },
+    "season_description": {
+      "type": "blocks"
+    },
+    "season_releaseDate": {
+      "type": "date"
+    },
+    "season_episodes": {
+      "type": "integer"
+    },
+    "watch_status": {
+      "type": "enumeration",
+      "enum": [
+        "Free",
+        "Subscription",
+        "Coming Soon"
+      ]
+    },
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "Theaters",
+        "Netflix",
+        "Amazon Prime",
+        "JioHotstar",
+        "Zee5",
+        "SonyLiv",
+        "YouTube",
+        "Amazon Prime Video",
+        "Disney+",
+        "Max",
+        "Hulu",
+        "Apple TV+",
+        "Paramount+",
+        "Peacock",
+        "MX Player",
+        "Crunchyroll",
+        "BBC iPlayer",
+        "Tubi",
+        "Pluto TV",
+        "Discovery+",
+        "Viki",
+        "Rakuten TV",
+        "The Roku Channel",
+        "Freevee",
+        "ITVX",
+        "MUBI",
+        "Aha",
+        "Hoichoi",
+        "Sun NXT",
+        "Lionsgate Play",
+        "ALTBalaji",
+        "Eros Now",
+        "ShemarooMe",
+        "ManoramaMAX",
+        "Chaupal",
+        "Stage",
+        "Ullu"
+      ]
+    },
+    "season_rating": {
+      "type": "decimal"
+    },
+    "season_reviews": {
+      "type": "component",
+      "component": "web-series.season-reviews",
+      "repeatable": true
+    },
+    "season_votes": {
+      "type": "string"
+    },
+    "episodes_list": {
+      "type": "component",
+      "component": "web-series.episodes-list",
+      "repeatable": true
+    },
+    "cast": {
+      "type": "component",
+      "component": "cast-celebrity.cast",
+      "repeatable": true
+    },
+    "crew": {
+      "type": "component",
+      "component": "crew-celebrity.crewmembers",
+      "repeatable": true
+    },
+    "awards": {
+      "type": "component",
+      "component": "web-series.web-series-awards",
+      "repeatable": true
+    },
+    "faqs": {
+      "type": "component",
+      "component": "web-series.faqs",
+      "repeatable": true
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    },
+    "season_trailer": {
+      "type": "string"
+    },
+    "season_title": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
+    }
+  },
+  "config": {}
+}

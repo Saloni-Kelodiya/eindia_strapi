@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_web_series_web_series_reviews",
+  "info": {
+    "displayName": "web_series_reviews"
+  },
+  "options": {},
+  "attributes": {
+    "rating": {
+      "type": "integer",
+      "max": 5
+    },
+    "comment": {
+      "type": "text"
+    },
+    "username": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

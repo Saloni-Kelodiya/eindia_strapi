@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_web_series_episodes_lists",
+  "info": {
+    "displayName": "episodes_list"
+  },
+  "options": {},
+  "attributes": {
+    "episodes_number": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "release_date": {
+      "type": "date"
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  },
+  "config": {}
+}

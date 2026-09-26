@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_movie_elements_cast_members",
+  "info": {
+    "displayName": "CastMember"
+  },
+  "options": {},
+  "attributes": {
+    "characterName": {
+      "type": "string"
+    },
+    "celebrities_profile": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::celebrities-profile.celebrities-profile"
+    }
+  },
+  "config": {}
+}

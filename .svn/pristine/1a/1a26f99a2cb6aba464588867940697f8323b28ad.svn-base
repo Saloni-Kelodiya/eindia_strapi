@@ -1,0 +1,50 @@
+{
+  "collectionName": "components_watching_platform_platforms",
+  "info": {
+    "displayName": "Platform"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "Amazon Prime",
+        "Netflix",
+        "SonyLIV",
+        "JioHotstar",
+        "Zee5",
+        "Stage",
+        "YouTube",
+        "Amazon Prime Video",
+        "Disney+",
+        "Max",
+        "Hulu",
+        "Apple TV+",
+        "Paramount+",
+        "MX Player",
+        "Crunchyroll",
+        "BBC iPlayer",
+        "Tubi",
+        "Pluto TV",
+        "Discovery+",
+        "Viki",
+        "Rakuten TV",
+        "The Roku Channel",
+        "Freevee",
+        "ITVX",
+        "MUBI",
+        "Aha",
+        "Hoichoi",
+        "Sun NXT",
+        "Lionsgate Play",
+        "ALTBalaji",
+        "Eros Now",
+        "ShemarooMe",
+        "ManoramaMAX",
+        "Chaupal",
+        "Ullu"
+      ]
+    }
+  },
+  "config": {}
+}

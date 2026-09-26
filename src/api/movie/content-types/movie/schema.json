@@ -1,0 +1,192 @@
+{
+  "kind": "collectionType",
+  "collectionName": "movies",
+  "info": {
+    "singularName": "movie",
+    "pluralName": "movies",
+    "displayName": "Movie"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "poster": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
+    },
+    "releaseType": {
+      "type": "enumeration",
+      "default": "released",
+      "enum": [
+        "upcoming",
+        "released"
+      ]
+    },
+    "releaseDate": {
+      "type": "date",
+      "required": true
+    },
+    "celebrities_profiles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::celebrities-profile.celebrities-profile",
+      "mappedBy": "movies"
+    },
+    "duration": {
+      "type": "string"
+    },
+    "trailer_id": {
+      "type": "string"
+    },
+    "backdrop": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "totalVotes": {
+      "type": "integer",
+      "default": 0
+    },
+    "pollActive": {
+      "type": "boolean",
+      "default": true
+    },
+    "poll_votes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::poll-vote.poll-vote",
+      "mappedBy": "movie"
+    },
+    "crewMembers": {
+      "type": "component",
+      "component": "movie-elements.crewmember",
+      "repeatable": true
+    },
+    "boxOffice": {
+      "type": "component",
+      "component": "movie-elements.box-office",
+      "repeatable": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "movies"
+    },
+    "cast": {
+      "type": "component",
+      "component": "movie-elements.cast-member",
+      "repeatable": true
+    },
+    "where_to_watch": {
+      "type": "component",
+      "component": "movie-elements.where-to-watch",
+      "repeatable": true
+    },
+    "movie_review": {
+      "type": "component",
+      "component": "movie-elements.movie-review",
+      "repeatable": true
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "movie"
+    },
+    "award": {
+      "type": "component",
+      "component": "movie-elements.award",
+      "repeatable": true
+    },
+    "rating": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::rating.rating",
+      "inversedBy": "movie"
+    },
+    "release_year": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::release-year.release-year",
+      "inversedBy": "movie"
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::genre.genre",
+      "mappedBy": "movies"
+    },
+    "age_rating": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::age-rating.age-rating",
+      "inversedBy": "movies"
+    },
+    "country": {
+      "type": "string"
+    },
+    "languages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::language.language",
+      "mappedBy": "movies"
+    },
+    "language": {
+      "type": "enumeration",
+      "default": "en",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "movie_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::movie-review.movie-review",
+      "mappedBy": "movie"
+    },
+    "trending": {
+      "type": "boolean"
+    },
+    "video": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::video.video",
+      "inversedBy": "related_movies"
+    },
+    "similarMovies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::movie.movie"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "movies"
+    }
+  }
+}

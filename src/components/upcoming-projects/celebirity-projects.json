@@ -1,0 +1,42 @@
+{
+  "collectionName": "components_upcoming_projects_celebirity_projects",
+  "info": {
+    "displayName": "CelebirityProjects"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "projecttype": {
+      "type": "enumeration",
+      "enum": [
+        "Movie",
+        "Web Series",
+        "TV Show",
+        "Music Video",
+        "OTT Film"
+      ]
+    },
+    "role": {
+      "type": "string"
+    },
+    "releaseDate": {
+      "type": "date"
+    },
+    "poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "discription": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

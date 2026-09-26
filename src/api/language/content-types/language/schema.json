@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "languages",
+  "info": {
+    "singularName": "language",
+    "pluralName": "languages",
+    "displayName": "languages"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "language": {
+      "type": "string"
+    },
+    "web_series": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::web-series.web-series",
+      "mappedBy": "languages"
+    },
+    "movies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::movie.movie",
+      "inversedBy": "languages"
+    },
+    "tv_shows": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::show.show",
+      "mappedBy": "languages"
+    },
+    "songs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::song.song",
+      "inversedBy": "song_language"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "language"
+    }
+  }
+}

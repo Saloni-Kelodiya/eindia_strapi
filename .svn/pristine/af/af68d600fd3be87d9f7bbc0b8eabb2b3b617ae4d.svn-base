@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categories",
+  "info": {
+    "singularName": "category",
+    "pluralName": "categories",
+    "displayName": "Category",
+    "description": "Content categories"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "category"
+    },
+    "movies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::movie.movie",
+      "mappedBy": "category"
+    },
+    "songs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::song.song",
+      "inversedBy": "categories"
+    },
+    "seoinfo": {
+      "type": "component",
+      "component": "seo.seo-info",
+      "repeatable": false
+    },
+    "celebrities_profiles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::celebrities-profile.celebrities-profile",
+      "inversedBy": "category"
+    },
+    "web_series": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::web-series.web-series",
+      "mappedBy": "categories"
+    },
+    "tv_shows": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::show.show",
+      "inversedBy": "categories"
+    },
+    "awards": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::award.award",
+      "mappedBy": "industry_category"
+    },
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "galleries": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::gallery.gallery",
+      "inversedBy": "categories"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_web_series_web_series",
+  "info": {
+    "displayName": "web_series_similar"
+  },
+  "options": {},
+  "attributes": {
+    "related_web_series": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::web-series.web-series"
+    }
+  },
+  "config": {}
+}

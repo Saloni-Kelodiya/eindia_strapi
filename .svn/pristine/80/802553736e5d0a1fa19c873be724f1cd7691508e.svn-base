@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_career_timeline_career_timelines",
+  "info": {
+    "displayName": "CareerTimeline"
+  },
+  "options": {},
+  "attributes": {
+    "year": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

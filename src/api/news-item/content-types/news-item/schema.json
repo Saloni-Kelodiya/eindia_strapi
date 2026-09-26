@@ -1,0 +1,110 @@
+{
+  "kind": "collectionType",
+  "collectionName": "news",
+  "info": {
+    "singularName": "news-item",
+    "pluralName": "news",
+    "displayName": "News"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "language": {
+      "type": "enumeration",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category"
+    },
+    "title": {
+      "type": "string",
+      "maxLength": 60
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "h1_title": {
+      "type": "string"
+    },
+    "typecontent": {
+      "type": "enumeration",
+      "enum": [
+        "LatestNews",
+        "CelebrityNews",
+        "ViralNews"
+      ]
+    },
+    "hero_image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "meta_keywords": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "text"
+    },
+    "meta_description": {
+      "type": "text"
+    },
+    "body": {
+      "type": "richtext"
+    },
+    "moderation_status": {
+      "type": "enumeration",
+      "default": "pending",
+      "enum": [
+        "draft",
+        "published",
+        "pending",
+        "archived",
+        "rejected"
+      ]
+    },
+    "views": {
+      "type": "biginteger"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "sponsored": {
+      "type": "boolean",
+      "default": false
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "news"
+    },
+    "Authors": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+      
+    },
+    "comment": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "news"
+    }
+  }
+}

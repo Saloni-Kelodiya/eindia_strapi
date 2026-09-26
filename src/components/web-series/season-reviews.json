@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_web_series_season_reviews",
+  "info": {
+    "displayName": "season_reviews"
+  },
+  "options": {},
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "integer"
+    },
+    "comment": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

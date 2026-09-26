@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_seo_seo_infos",
+  "info": {
+    "displayName": "seo-info"
+  },
+  "options": {},
+  "attributes": {
+    "seo_title": {
+      "type": "string"
+    },
+    "seo_description": {
+      "type": "text"
+    },
+    "seo_keywords": {
+      "type": "text"
+    },
+    "h1_heading": {
+      "type": "text"
+    },
+    "page_description": {
+      "type": "blocks"
+    }
+  },
+  "config": {}
+}

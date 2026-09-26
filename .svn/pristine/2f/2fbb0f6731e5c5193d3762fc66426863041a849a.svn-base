@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "music_genres",
+  "info": {
+    "singularName": "music-genre",
+    "pluralName": "music-genres",
+    "displayName": "MusicGenres"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "songs": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::song.song",
+      "inversedBy": "music_genres"
+    }
+  }
+}

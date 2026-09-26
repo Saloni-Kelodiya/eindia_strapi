@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "article_views",
+  "info": {
+    "singularName": "article-view",
+    "pluralName": "article-views",
+    "displayName": "Article View"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "system_id": {
+      "type": "string",
+      "required": true
+    },
+    "article": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::article.article"
+    }
+  }
+}

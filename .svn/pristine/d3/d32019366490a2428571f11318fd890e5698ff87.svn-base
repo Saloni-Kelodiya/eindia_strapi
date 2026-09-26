@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "professions",
+  "info": {
+    "singularName": "profession",
+    "pluralName": "professions",
+    "displayName": "Profession"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "profession_Field": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "profession_Field"
+    }
+  }
+}

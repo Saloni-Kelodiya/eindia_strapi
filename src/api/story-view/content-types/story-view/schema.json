@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "story_views",
+  "info": {
+    "singularName": "story-view",
+    "pluralName": "story-views",
+    "displayName": "Story View"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "web_story": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::web-story.web-story",
+      "inversedBy": "story_views"
+    },
+    "system_id": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

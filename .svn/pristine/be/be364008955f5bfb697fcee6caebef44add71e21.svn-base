@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_cast_celebrity_casts",
+  "info": {
+    "displayName": "Cast"
+  },
+  "options": {},
+  "attributes": {
+    "characterName": {
+      "type": "string"
+    },
+    "celebrities_profiles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::celebrities-profile.celebrities-profile"
+    },
+    "seasons": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::season.season"
+    }
+  },
+  "config": {}
+}

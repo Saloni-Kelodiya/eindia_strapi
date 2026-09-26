@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_web_series_box_office_web_series_box_offices",
+  "info": {
+    "displayName": "Web Series Box-office"
+  },
+  "options": {},
+  "attributes": {
+    "season": {
+      "type": "integer"
+    },
+    "earning": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

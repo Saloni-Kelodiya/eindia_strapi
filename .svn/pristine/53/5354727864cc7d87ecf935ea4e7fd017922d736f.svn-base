@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_gallary_photo_items",
+  "info": {
+    "displayName": "PhotoItem"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "caption": {
+      "type": "text",
+      "default": "No Caption Here",
+      "maxLength": 120
+    },
+    "dress_brandName": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

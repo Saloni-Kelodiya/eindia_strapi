@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_web_series_season_galleries",
+  "info": {
+    "displayName": "season_gallery"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "tag": {
+      "type": "enumeration",
+      "enum": [
+        "POSTER,",
+        "PROMO,",
+        "BTS"
+      ]
+    },
+    "caption": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

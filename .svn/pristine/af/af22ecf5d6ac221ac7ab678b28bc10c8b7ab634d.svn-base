@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_related_celebrity_related_celebrities",
+  "info": {
+    "displayName": "Related-Celebrity"
+  },
+  "options": {},
+  "attributes": {
+    "celebrities_profiles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::celebrities-profile.celebrities-profile"
+    },
+    "relation": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

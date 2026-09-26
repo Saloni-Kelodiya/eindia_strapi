@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_web_series_season_videos",
+  "info": {
+    "displayName": "season_videos"
+  },
+  "options": {},
+  "attributes": {
+    "video_id": {
+      "type": "string"
+    },
+    "tag": {
+      "type": "enumeration",
+      "enum": [
+        "TEASER, ",
+        "TRAILER,",
+        " BTS,",
+        " CLIP"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "duration": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

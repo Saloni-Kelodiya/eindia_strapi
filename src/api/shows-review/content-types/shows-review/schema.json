@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shows_reviews",
+  "info": {
+    "singularName": "shows-review",
+    "pluralName": "shows-reviews",
+    "displayName": "Shows-review"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "comment": {
+      "type": "text"
+    },
+    "rating": {
+      "type": "integer",
+      "max": 5
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "shows_reviews"
+    },
+    "tv_show": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::show.show",
+      "inversedBy": "shows_reviews"
+    }
+  }
+}

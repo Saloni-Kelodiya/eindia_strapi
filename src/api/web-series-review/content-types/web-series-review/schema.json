@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "web_series_reviews",
+  "info": {
+    "singularName": "web-series-review",
+    "pluralName": "web-series-reviews",
+    "displayName": "WebSeries Review"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "rating": {
+      "type": "integer",
+      "default": 0,
+      "max": 5
+    },
+    "comment": {
+      "type": "text"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "web_series_reviews"
+    },
+    "web_series": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::web-series.web-series",
+      "inversedBy": "web_series_reviews"
+    }
+  }
+}

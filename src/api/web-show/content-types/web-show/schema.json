@@ -1,0 +1,156 @@
+{
+  "kind": "collectionType",
+  "collectionName": "web_shows",
+  "info": {
+    "singularName": "web-show",
+    "pluralName": "web-shows",
+    "displayName": "Web Show"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "language": {
+      "type": "enumeration",
+      "required": true,
+       "enum": [
+       "en",
+       "hi"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "files",
+        "images"
+      ]
+    },
+    "backdrop_poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "releasedate": {
+      "type": "datetime"
+    },
+    "metadescription": {
+      "type": "text",
+      "maxLength": 160,
+      "required": true
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::genre.genre"
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "languages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::language.language"
+    },
+    "age_rating": {
+      "type": "enumeration",
+       "enum": [
+        "U",
+        "UA",
+        "UA7+",
+        "UA10+",
+        "UA13+",
+        "UA16+",
+        "U/A 7+",
+        "U/A 10+",
+        "U/A 13+",
+        "U/A 16+",
+        "A (18+)",
+        "A",
+        "S",
+        "G",
+        "PG",
+        "PG-13",
+        "R",
+        "NC-17",
+        "TV-MA"
+      ]
+    },
+    "total_seasons": {
+      "type": "integer"
+    },
+    "watching_platform": {
+      "type": "component",
+      "component": "movie-elements.where-to-watch",
+      "repeatable": true
+    },
+    "trailer_id": {
+      "type": "string"
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "seasons": {
+      "type": "component",
+      "component": "seasons.seasons",
+      "repeatable": true
+    },
+    "faqs": {
+      "type": "component",
+      "component": "web-series.faqs",
+      "repeatable": true
+    },
+    "gallery": {
+      "type": "component",
+      "component": "web-series.season-gallery",
+      "repeatable": true
+    },
+    "tag": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tag.tag"
+    },
+    "production_company": {
+      "type": "string"
+    },
+    "total_votes": {
+      "type": "string"
+    },
+    "runtime": {
+      "type": "string"
+    },
+    "auther": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

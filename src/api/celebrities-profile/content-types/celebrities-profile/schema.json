@@ -1,0 +1,152 @@
+{
+  "kind": "collectionType",
+  "collectionName": "celebrities_profiles",
+  "info": {
+    "singularName": "celebrities-profile",
+    "pluralName": "celebrities-profiles",
+    "displayName": "Celebrities profile"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "Slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "Bio": {
+      "type": "richtext"
+    },
+    "Avatar": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "Birthdate": {
+      "type": "date"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "popularname": {
+      "type": "string"
+    },
+    "profile_bg_poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "professions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::profession.profession"
+    },
+    "movies": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::movie.movie",
+      "inversedBy": "celebrities_profiles"
+    },
+    "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    },
+    "galleries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::gallery.gallery"
+    },
+    "familyDetails": {
+      "type": "component",
+      "component": "family-details.celebirity",
+      "repeatable": false
+    },
+    "personalLife": {
+      "type": "component",
+      "component": "personal-life.celebirity",
+      "repeatable": false
+    },
+    "social_account": {
+      "type": "component",
+      "component": "social-media-account.social-account",
+      "repeatable": true
+    },
+    "upcomingprojects": {
+      "type": "component",
+      "component": "upcoming-projects.celebirity-projects",
+      "repeatable": true
+    },
+    "carrerTimeline": {
+      "type": "component",
+      "component": "career-timeline.career-timeline",
+      "repeatable": true
+    },
+    "awards": {
+      "type": "component",
+      "component": "award.award",
+      "repeatable": true
+    },
+    "relatedCelebrity": {
+      "type": "component",
+      "component": "related-celebrity.related-celebrity",
+      "repeatable": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "celebrities_profiles"
+    },
+    "total_movies": {
+      "type": "biginteger"
+    },
+    "total_awards": {
+      "type": "biginteger"
+    },
+    "total_tvshows": {
+      "type": "biginteger"
+    },
+    "total_webseries": {
+      "type": "biginteger"
+    },
+    "language": {
+      "type": "enumeration",
+      "default": "en",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "deathDate": {
+      "type": "date"
+    },
+    "industry": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::industry.industry"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "celebrities_profiles"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "kind": "collectionType",
+  "collectionName": "web_stories",
+  "info": {
+    "singularName": "web-story",
+    "pluralName": "web-stories",
+    "displayName": "Web Story"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "maxLength": 80,
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "heroText": {
+      "type": "string",
+      "maxLength": 80,
+      "required": true
+    },
+    "seo_title": {
+      "type": "string",
+      "maxLength": 80
+    },
+    "slides": {
+      "type": "component",
+      "component": "web-story.slide",
+      "repeatable": true
+    },
+    "seo_description": {
+      "type": "text"
+    },
+    "auther": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "web_stories"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "all",
+        "box-office",
+        "celebrity",
+        "fashion",
+        "lifestyle",
+        "events",
+        "entertainment"
+      ]
+    },
+    "related_stories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::web-story.web-story"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    },
+    "moderation_status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "published",
+        "rejected"
+      ]
+    },
+    "language": {
+      "type": "enumeration",
+      "default": "en",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "meta_keywords": {
+      "type": "string"
+    },
+    "views": {
+      "type": "biginteger",
+      "default": "0"
+    },
+    "story_views": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::story-view.story-view",
+      "mappedBy": "web_story"
+    }
+  }
+}

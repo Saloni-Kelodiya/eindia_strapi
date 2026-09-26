@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_movie_elements_awards",
+  "info": {
+    "displayName": "award"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "year": {
+      "type": "biginteger"
+    },
+    "awardStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Won",
+        "Nominated"
+      ]
+    },
+    "iconType": {
+      "type": "enumeration",
+      "enum": [
+        "gold",
+        "silver"
+      ]
+    },
+    "name": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

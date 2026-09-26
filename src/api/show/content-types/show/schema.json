@@ -1,0 +1,158 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shows",
+  "info": {
+    "singularName": "show",
+    "pluralName": "shows",
+    "displayName": "Tv-Shows"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "backdrop_poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "mappedBy": "tv_shows"
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::genre.genre",
+      "mappedBy": "tv_shows"
+    },
+    "languages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::language.language",
+      "inversedBy": "tv_shows"
+    },
+    "realted_articles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "tv_shows"
+    },
+    "cast": {
+      "type": "component",
+      "component": "cast-celebrity.cast",
+      "repeatable": true
+    },
+    "realeaseDate": {
+      "type": "date"
+    },
+    "crew": {
+      "type": "component",
+      "component": "crew-celebrity.crewmembers",
+      "repeatable": true
+    },
+    "age_rating": {
+      "type": "enumeration",
+      "enum": [
+        "UA",
+        "UA16+",
+        "UA13+",
+        "UA17+",
+        "A",
+        "U"
+      ]
+    },
+    "watchingPlatform": {
+      "type": "component",
+      "component": "movie-elements.where-to-watch",
+      "repeatable": true
+    },
+    "seasonNumber": {
+      "type": "integer"
+    },
+    "shows_seasons": {
+      "type": "component",
+      "component": "seasons.seasons",
+      "repeatable": true
+    },
+    "country": {
+      "type": "string"
+    },
+    "similar_tv_shows": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::show.show"
+    },
+    "tv_show_awards": {
+      "type": "component",
+      "component": "tv-shows.tv-shows-awards",
+      "repeatable": true
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "shows_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shows-review.shows-review",
+      "mappedBy": "tv_show"
+    },
+    "language": {
+      "type": "enumeration",
+      "default": "en",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "trailer_id": {
+      "type": "string"
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "tv_shows"
+    },
+    "metadescription": {
+      "type": "text"
+    },
+    "tag": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tag.tag"
+    },
+    "faqs": {
+      "type": "component",
+      "component": "web-series.faqs",
+      "repeatable": true
+    }
+  }
+}

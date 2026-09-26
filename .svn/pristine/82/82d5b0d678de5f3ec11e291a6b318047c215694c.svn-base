@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_family_details_celebirities",
+  "info": {
+    "displayName": "Celebirity"
+  },
+  "options": {},
+  "attributes": {
+    "father": {
+      "type": "string"
+    },
+    "mother": {
+      "type": "string"
+    },
+    "spouse": {
+      "type": "string"
+    },
+    "brother": {
+      "type": "string"
+    },
+    "sister": {
+      "type": "string"
+    },
+    "children": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

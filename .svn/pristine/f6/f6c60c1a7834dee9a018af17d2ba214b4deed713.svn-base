@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_awards_award_categories",
+  "info": {
+    "displayName": "AwardCategories"
+  },
+  "options": {},
+  "attributes": {
+    "categoryName": {
+      "type": "string"
+    },
+    "winnerTitle": {
+      "type": "string"
+    },
+    "winnerImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "winnerSubTitle": {
+      "type": "string"
+    },
+    "NomineesList": {
+      "type": "component",
+      "component": "aw.nominees-list",
+      "repeatable": true
+    },
+    "categoryDescription": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

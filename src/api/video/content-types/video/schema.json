@@ -1,0 +1,89 @@
+{
+  "kind": "collectionType",
+  "collectionName": "videos",
+  "info": {
+    "singularName": "video",
+    "pluralName": "videos",
+    "displayName": "Video",
+    "description": "Video content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "video_id": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+    "videotype": {
+      "type": "enumeration",
+      "enum": [
+        "Trailers",
+        "Celeb Interviews",
+        "First Day First Show",
+        "Parties & Events",
+        "Exclusive & Specials",
+        "Movie Songs",
+        "Music"
+      ]
+    },
+    "language": {
+      "type": "enumeration",
+      "default": "en",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "views": {
+      "type": "biginteger"
+    },
+    "related_articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "video"
+    },
+    "related_videos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::video.video"
+    },
+    "related_movies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::movie.movie",
+      "mappedBy": "video"
+    },
+    "video_content": {
+      "type": "richtext",
+      "maxLength": 500
+    },
+    "duration": {
+      "type": "biginteger"
+    },
+    "meta_description": {
+      "type": "string",
+      "maxLength": 160
+    }
+  }
+}

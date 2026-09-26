@@ -1,0 +1,9 @@
+export default {
+  routes: [
+    { method: 'GET', path: '/tags', handler: 'tag.find' },
+    { method: 'GET', path: '/tags/:id', handler: 'tag.findOne' },
+    { method: 'POST', path: '/tags', handler: 'tag.create' },
+    { method: 'PUT', path: '/tags/:id', handler: 'tag.update' },
+    { method: 'DELETE', path: '/tags/:id', handler: 'tag.delete' },
+  ],
+};

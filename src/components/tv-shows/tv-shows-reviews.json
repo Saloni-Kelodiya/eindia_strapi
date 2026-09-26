@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_tv_shows_tv_shows_reviews",
+  "info": {
+    "displayName": "tv-shows-reviews"
+  },
+  "options": {},
+  "attributes": {
+    "rating": {
+      "type": "integer",
+      "max": 5
+    },
+    "comment": {
+      "type": "text"
+    },
+    "username": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,104 @@
+export default [
+  'strapi::errors',
+  {
+    name: 'strapi::security',
+    config: {
+      contentSecurityPolicy: {
+        useDefaults: true,
+        directives: {
+          'default-src': ["'self'"],
+          'connect-src': [
+            "'self'",
+            'http://localhost:1337',
+            'https:',
+            'wss:',
+          ],
+          'img-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'http://localhost:1337',
+            'https://img.entertainindia.com',
+            'https:',
+          ],
+          'media-src': [
+            "'self'",
+            'data:',
+            'blob:',
+            'https://img.entertainindia.com',
+            'https:',
+          ],
+          'script-src': [
+            "'self'",
+            "'unsafe-inline'",
+            "'unsafe-eval'",
+          ],
+          'style-src': [
+            "'self'",
+            "'unsafe-inline'",
+          ],
+          'font-src': [
+            "'self'",
+            'data:',
+            'https:',
+          ],
+          'frame-src': [
+            "'self'",
+          ],
+        },
+      },
+    },
+  },
+  {
+    name: 'strapi::cors',
+    config: {
+      enabled: true,
+      origin: [
+        'http://localhost:3000',
+        'https://entertain-india.vercel.app',
+        'https://entertainindia.vercel.app',
+        'https://entertainindia.com',
+        'https://entertainindia.in',
+      ],
+      headers: [
+        'Content-Type',
+        'Authorization',
+        'Origin',
+        'Accept',
+        'X-Requested-With',
+        'x-system-id',
+        'X-System-Id',
+      ],
+      methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS', 'HEAD'],
+      credentials: true,
+      maxAge: 86400,
+    },
+  },
+  'strapi::poweredBy',
+  'strapi::logger',
+  'strapi::query',
+  // ✅ Body middleware with formidable config added
+  {
+    name: 'strapi::body',
+    config: {
+      formLimit: '256mb',
+      jsonLimit: '256mb',
+      textLimit: '256mb',
+      formidable: {
+        maxFileSize: 250 * 1024 * 1024, // 250mb
+      },
+    },
+  },
+  {
+    name: 'strapi::session',
+    config: {
+      key: 'strapi.sid',
+      httpOnly: true,
+      maxAge: 86400000,
+      secure: true,
+      sameSite: 'lax',
+    },
+  },
+  'strapi::favicon',
+  'strapi::public',
+];

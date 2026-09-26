@@ -1,0 +1,192 @@
+{
+  "kind": "collectionType",
+  "collectionName": "web_series_collections",
+  "info": {
+    "singularName": "web-series",
+    "pluralName": "web-series-collections",
+    "displayName": "Web Series"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "description": {
+      "type": "richtext"
+    },
+    "poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "releaseDate": {
+      "type": "date"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "web_series"
+    },
+    "genres": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::genre.genre",
+      "inversedBy": "web_series"
+    },
+    "running_status": {
+      "type": "enumeration",
+      "enum": [
+        "Ongoing",
+        "Completed"
+      ]
+    },
+    "country": {
+      "type": "string"
+    },
+    "watchingPlatform": {
+      "type": "component",
+      "component": "movie-elements.where-to-watch",
+      "repeatable": true
+    },
+    "age_rating": {
+      "type": "enumeration",
+      "enum": [
+        "U",
+        "UA",
+        "UA7+",
+        "UA10+",
+        "UA13+",
+        "UA16+",
+        "U/A 7+",
+        "U/A 10+",
+        "U/A 13+",
+        "U/A 16+",
+        "A (18+)",
+        "A",
+        "S",
+        "G",
+        "PG",
+        "PG-13",
+        "R",
+        "NC-17",
+        "TV-MA"
+      ]
+    },
+    "backdrop_poster": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "languages": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::language.language",
+      "inversedBy": "web_series"
+    },
+    "relatedArticles": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::article.article",
+      "mappedBy": "web_series"
+    },
+    "crew": {
+      "type": "component",
+      "component": "crew-celebrity.crewmembers",
+      "repeatable": true
+    },
+    "cast": {
+      "type": "component",
+      "component": "cast-celebrity.cast",
+      "repeatable": true
+    },
+    "seasonNumber": {
+      "type": "integer"
+    },
+    "series_seasons": {
+      "type": "component",
+      "component": "seasons.seasons",
+      "repeatable": true
+    },
+    "rating": {
+      "type": "decimal"
+    },
+    "web_series_awards": {
+      "type": "component",
+      "component": "web-series.web-series-awards",
+      "repeatable": true
+    },
+    "web_series_reviews": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::web-series-review.web-series-review",
+      "mappedBy": "web_series"
+    },
+    "language": {
+      "type": "enumeration",
+      "default": "en",
+      "enum": [
+        "en",
+        "hi"
+      ]
+    },
+    "trailer_id": {
+      "type": "string"
+    },
+    "trending": {
+      "type": "boolean",
+      "default": false
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "web_series"
+    },
+    "tagline": {
+      "type": "string"
+    },
+    "total_votes": {
+      "type": "string"
+    },
+    "production_company": {
+      "type": "string"
+    },
+    "runtime": {
+      "type": "string"
+    },
+    "faqs": {
+      "type": "component",
+      "component": "web-series.faqs",
+      "repeatable": true
+    },
+    "similar_webseries": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::web-series.web-series"
+    },
+    "gallery": {
+      "type": "component",
+      "component": "web-series.season-gallery",
+      "repeatable": true
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tag.tag"
+    }
+  }
+}

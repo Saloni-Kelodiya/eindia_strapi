@@ -1,0 +1,48 @@
+{
+  "collectionName": "components_personal_life_celebirities",
+  "info": {
+    "displayName": "Celebirity"
+  },
+  "options": {},
+  "attributes": {
+    "maritalStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Single",
+        " Married",
+        "Divorced"
+      ]
+    },
+    "affairs": {
+      "type": "string"
+    },
+    "religion": {
+      "type": "string"
+    },
+    "hobbies": {
+      "type": "string"
+    },
+    "education": {
+      "type": "string"
+    },
+    "netWorth": {
+      "type": "string"
+    },
+    "hometown": {
+      "type": "string"
+    },
+    "current_address": {
+      "type": "string"
+    },
+    "nationality": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "real_name": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "google_reports",
+  "info": {
+    "singularName": "google-report",
+    "pluralName": "google-reports",
+    "displayName": "Google Report"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "content": {
+      "type": "enumeration",
+      "enum": [
+        "Article",
+        "Movie",
+        "Web Story",
+        "Celebrity Profile",
+        "Web Series",
+        "Tv Show",
+        "Photo",
+        "Video",
+        "Song"
+      ]
+    },
+    "contentId": {
+      "type": "biginteger"
+    },
+    "title": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "authorId": {
+      "type": "biginteger"
+    },
+    "authorName": {
+      "type": "string"
+    },
+    "date": {
+      "type": "datetime"
+    },
+    "clicks": {
+      "type": "biginteger"
+    },
+    "impressions": {
+      "type": "biginteger"
+    },
+    "position": {
+      "type": "decimal"
+    }
+  }
+}

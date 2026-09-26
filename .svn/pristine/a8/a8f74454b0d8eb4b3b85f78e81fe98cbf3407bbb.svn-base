@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_award_awards",
+  "info": {
+    "displayName": "award"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    },
+    "year": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    },
+    "won": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "config": {}
+}

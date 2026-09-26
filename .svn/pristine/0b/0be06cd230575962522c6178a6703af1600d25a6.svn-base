@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_social_media_account_social_accounts",
+  "info": {
+    "displayName": "Social-Account"
+  },
+  "options": {},
+  "attributes": {
+    "platform": {
+      "type": "enumeration",
+      "enum": [
+        "Instagram",
+        "Twitter",
+        "Facebook",
+        "YouTube"
+      ]
+    },
+    "username": {
+      "type": "string"
+    },
+    "verified": {
+      "type": "boolean",
+      "default": true
+    },
+    "profileurl": {
+      "type": "string"
+    },
+    "followers": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_movie_elements_box_offices",
+  "info": {
+    "displayName": "BoxOffice"
+  },
+  "options": {},
+  "attributes": {
+    "budget": {
+      "type": "string"
+    },
+    "worldwideCollection": {
+      "type": "string"
+    },
+    "opening": {
+      "type": "string"
+    },
+    "verdict": {
+      "type": "enumeration",
+      "enum": [
+        "Blockbuster",
+        "Superhit",
+        "Hit",
+        "Average",
+        "Flop"
+      ]
+    },
+    "overseas": {
+      "type": "string"
+    },
+    "domestic": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  },
+  "config": {}
+}

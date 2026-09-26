@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_song_artists_songs",
+  "info": {
+    "displayName": "Song"
+  },
+  "options": {},
+  "attributes": {
+    "artist_profile": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::celebrities-profile.celebrities-profile"
+    },
+    "profile_Notexist": {
+      "type": "boolean",
+      "default": false
+    },
+    "artist_name": {
+      "type": "string",
+      "conditions": {
+        "visible": {
+          "==": [
+            {
+              "var": "profile_Notexist"
+            },
+            true
+          ]
+        }
+      }
+    }
+  },
+  "config": {}
+}

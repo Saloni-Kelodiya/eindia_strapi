@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "author_requests",
+  "info": {
+    "singularName": "author-request",
+    "pluralName": "author-requests",
+    "displayName": "Author-Request"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "request_status": {
+      "type": "enumeration",
+      "default": "pending",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ]
+    },
+    "applicant": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

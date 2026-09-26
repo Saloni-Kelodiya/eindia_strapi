@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "age_ratings",
+  "info": {
+    "singularName": "age-rating",
+    "pluralName": "age-ratings",
+    "displayName": "Age Rating"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
+    "movies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::movie.movie",
+      "mappedBy": "age_rating"
+    }
+  }
+}

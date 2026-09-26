@@ -1,0 +1,56 @@
+{
+  "collectionName": "components_movie_elements_platforms",
+  "info": {
+    "displayName": "Platform"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "enumeration",
+      "enum": [
+        "YouTube",
+        "Netflix",
+        "Amazon Prime Video",
+        "Disney+",
+        "JioHotstar",
+        "Max",
+        "Hulu",
+        "Apple TV+",
+        "Paramount+",
+        "Peacock",
+        "ZEE5",
+        "SonyLIV",
+        "MX Player",
+        "Crunchyroll",
+        "BBC iPlayer",
+        "Tubi",
+        "Pluto TV",
+        "Discovery+",
+        "Viki",
+        "Rakuten TV",
+        "The Roku Channel",
+        "Freevee",
+        "ITVX",
+        "MUBI",
+        "Aha",
+        "Hoichoi",
+        "Sun NXT",
+        "Lionsgate Play",
+        "ALTBalaji",
+        "Eros Now",
+        "ShemarooMe",
+        "ManoramaMAX",
+        "Chaupal",
+        "Stage",
+        "Ullu"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}

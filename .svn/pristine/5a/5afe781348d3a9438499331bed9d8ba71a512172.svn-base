@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_tv_shows_tv_shows_awards",
+  "info": {
+    "displayName": "tv-shows-awards"
+  },
+  "options": {},
+  "attributes": {
+    "award_name": {
+      "type": "string"
+    },
+    "award_organization": {
+      "type": "string"
+    },
+    "award_winnername": {
+      "type": "string"
+    },
+    "won": {
+      "type": "boolean",
+      "default": false
+    },
+    "award_photo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "award_year": {
+      "type": "string"
+    }
+  },
+  "config": {}
+}
