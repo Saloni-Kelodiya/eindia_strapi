@@ -644,6 +644,17 @@ export interface TableTableRowsTableRows extends Struct.ComponentSchema {
   };
 }
 
+export interface TagTags extends Struct.ComponentSchema {
+  collectionName: 'components_tag_tags';
+  info: {
+    displayName: 'Tags';
+  };
+  attributes: {
+    rank: Schema.Attribute.Integer;
+    tag: Schema.Attribute.Relation<'oneToOne', 'api::tag.tag'>;
+  };
+}
+
 export interface TvShowsTvShowsAwards extends Struct.ComponentSchema {
   collectionName: 'components_tv_shows_tv_shows_awards';
   info: {
@@ -928,6 +939,7 @@ declare module '@strapi/strapi' {
       'song-artists.song': SongArtistsSong;
       'song-singer.song-singer': SongSingerSongSinger;
       'table-table-rows.table-rows': TableTableRowsTableRows;
+      'tag.tags': TagTags;
       'tv-shows.tv-shows-awards': TvShowsTvShowsAwards;
       'tv-shows.tv-shows-reviews': TvShowsTvShowsReviews;
       'upcoming-projects.celebirity-projects': UpcomingProjectsCelebirityProjects;
