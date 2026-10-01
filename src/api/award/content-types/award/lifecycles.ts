@@ -10,6 +10,95 @@ function getString(value: unknown): string {
   return value.trim();
 }
 
+function getRelationShape(value: unknown): string {
+  if (Array.isArray(value)) {
+    return `array(length=${value.length})`;
+  }
+
+  if (value && typeof value === 'object') {
+    const relation = value as Record<string, unknown>;
+    return `object(keys=${Object.keys(relation).join(',')}; idType=${typeof relation.id})`;
+  }
+
+  return typeof value;
+}
+
+async function getCategoryId(value: unknown): Promise<string | number> {
+  if (typeof value === 'string' || Number.isInteger(value)) {
+    return value as string | number;
+  }
+
+  if (value && typeof value === 'object') {
+    const relation = value as Record<string, unknown>;
+
+    if (typeof relation.id === 'string' || Number.isInteger(relation.id)) {
+      return relation.id as string | number;
+    }
+
+    if (typeof relation.documentId === 'string') {
+      const category = await strapi
+        .documents('api::category.category')
+        .findOne({ documentId: relation.documentId });
+
+      if (category) {
+        return category.id;
+      }
+    }
+  }
+
+  throw new ApplicationError(
+    'Invalid industry_category relation: expected an ID or category reference.'
+  );
+}
+
+async function normalizeIndustryCategory(value: unknown): Promise<unknown> {
+  if (value == null || typeof value === 'string' || Number.isInteger(value)) {
+    return value;
+  }
+
+  if (Array.isArray(value)) {
+    return Promise.all(value.map(getCategoryId));
+  }
+
+  if (value && typeof value === 'object') {
+    const relation = value as Record<string, unknown>;
+    const operations = ['set', 'connect', 'disconnect'].filter((operation) =>
+      Object.prototype.hasOwnProperty.call(relation, operation)
+    );
+
+    if (operations.length > 0) {
+      const normalized = { ...relation };
+
+      for (const operation of operations) {
+        const targets = relation[operation];
+        normalized[operation] = Array.isArray(targets)
+          ? await Promise.all(targets.map(getCategoryId))
+          : targets == null
+            ? targets
+            : await getCategoryId(targets);
+      }
+
+      return normalized;
+    }
+
+    return getCategoryId(value);
+  }
+
+  return getCategoryId(value);
+}
+
+/**
+ * awardCategories component me sirf wahi fields bhejo jo
+ * schema me exist karte hain:
+ * - categoryName
+ * - categoryDescription
+ * - winnerTitle
+ * - winnerSubTitle
+ * - NomineesList (nested component)
+ *
+ * ❌ year, winnerImage, image — ye schema me nahi hain.
+ * ❌ Media fields (image) — sirf numeric id chahiye, object nahi.
+ */
 function prepareAwardCategoriesForStrapi(categories: any[]) {
   if (!Array.isArray(categories)) {
     return [];
@@ -20,17 +109,12 @@ function prepareAwardCategoriesForStrapi(categories: any[]) {
     categoryDescription: getString(category.categoryDescription),
     winnerTitle: getString(category.winnerTitle),
     winnerSubTitle: getString(category.winnerSubTitle),
-
-    // ✅ winnerImage bilkul mat bhejo — undefined rehne do
-    // null bhi mat bhejo
-
-    NomineesList: Array.isArray(category.NomineesList)
-      ? category.NomineesList
+    NomineesList: Array.isArray(category.nominees)
+      ? category.nominees
           .filter((nominee: any) => getString(nominee.name))
           .map((nominee: any) => ({
             name: getString(nominee.name),
             subTitle: getString(nominee.subTitle),
-            // ✅ image bilkul mat bhejo
           }))
       : [],
   }));
@@ -40,10 +124,33 @@ export default {
   async beforeCreate(event: any) {
     const data = event.params.data ?? {};
 
+    if (Object.prototype.hasOwnProperty.call(data, 'industry_category')) {
+      strapi.log.info(
+        `[Award Automation] industry_category input shape: ${getRelationShape(data.industry_category)}`
+      );
+      data.industry_category = await normalizeIndustryCategory(
+        data.industry_category
+      );
+      strapi.log.info(
+        `[Award Automation] industry_category normalized shape: ${getRelationShape(data.industry_category)}`
+      );
+    }
+
     const wikipediaUrl = getString(data.wikipediaUrl);
     const awardName = getString(data.title);
 
     if (!wikipediaUrl) {
+      return;
+    }
+
+    // Agar awardCategories already bhare hue hain, dobara generate mat karo
+    if (
+      Array.isArray(data.awardCategories) &&
+      data.awardCategories.length > 0
+    ) {
+      strapi.log.info(
+        '[Award Automation] awardCategories already present, skipping generation.'
+      );
       return;
     }
 
@@ -58,10 +165,9 @@ export default {
       });
 
       if (!result.success) {
-        throw new ApplicationError(
-          'Award data generation failed.',
-          { validation: result.validation }
-        );
+        throw new ApplicationError('Award data generation failed.', {
+          validation: result.validation,
+        });
       }
 
       if (!result.validation.valid) {
@@ -97,15 +203,11 @@ export default {
         payload.awardCategories
       );
 
-      // Relation aur media beforeCreate mein nahi
-      delete data.industry_category;
+      // Media admin panel se manually set hoga. industry_category relation
+      // ko preserve karein; awardCategories Wikipedia se generate hote hain.
       delete data.image;
 
       event.params.data = data;
-
-      // afterCreate ke liye store karein
-      event.state = event.state || {};
-      event.state.generatedPayload = payload;
 
       strapi.log.info(
         `[Award Automation] Award data generated successfully: ${data.title}`
@@ -128,65 +230,12 @@ export default {
     }
   },
 
-  // ✅ NEW: afterCreate mein industry_category relation set karein
-  async afterCreate(event: any) {
-    const { result, state } = event;
-
-    const payload = state?.generatedPayload;
-
-    if (!payload?.industry_category) {
-      return;
-    }
-
-    if (!result?.documentId) {
-      strapi.log.warn(
-        '[Award Automation] afterCreate: No documentId found on created award.'
-      );
-      return;
-    }
-
-    try {
-      strapi.log.info(
-        `[Award Automation] Setting industry_category: ${payload.industry_category}`
-      );
-
-      // Category collection mein slug se dhundein
-      const categoryEntry = await strapi
-        .documents('api::category.category')
-        .findFirst({
-          filters: { slug: payload.industry_category },
-        });
-
-      if (!categoryEntry) {
-        strapi.log.warn(
-          `[Award Automation] Category not found for slug: "${payload.industry_category}"`
-        );
-        return;
-      }
-
-      // Award update karein industry_category relation ke sath
-      await strapi
-        .documents('api::award.award')
-        .update({
-          documentId: result.documentId,
-          data: {
-            industry_category: {
-              connect: [categoryEntry.documentId],
-            } as any,
-          } as any,
-        });
-
-      strapi.log.info(
-        `[Award Automation] industry_category set to: ${categoryEntry.documentId}`
-      );
-    } catch (error) {
-      strapi.log.error(
-        `[Award Automation] Failed to set industry_category: ${
-          error instanceof Error ? error.message : String(error)
-        }`
-      );
-      // Award already create ho chuka hai
-      // Yahan throw nahi karein — sirf log karein
-    }
+  /**
+   * afterCreate — industry_category admin panel se manually set hoga.
+   * Wikipedia automation sirf award data generate karta hai.
+   * Toh yahan kuch karne ki zaroorat nahi.
+   */
+  async afterCreate(_event: any) {
+    return;
   },
 };

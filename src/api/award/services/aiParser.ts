@@ -1,14 +1,9 @@
 /**
  * Award AI Parser
  *
- * Source:
- * Wikipedia / other award source content
- *
- * Output:
- * Fixed Award JSON structure
- *
- * Model:
- * gemini-3.5-flash-lite
+ * Source: Wikipedia / other award source content
+ * Output: Fixed Award JSON structure
+ * Model: gemini-3.5-flash-lite
  */
 
 import { fetchWithRetry } from './networkFetch';
@@ -23,7 +18,6 @@ const MAX_SOURCE_CHARS = 60000;
 export interface AwardCategory {
   categoryName: string;
   categoryDescription: string;
-  year: string;
   winnerTitle: string;
   winnerSubTitle: string;
   nominees: {
@@ -49,9 +43,7 @@ function cleanText(value: unknown): string {
     return '';
   }
 
-  return value
-    .replace(/\s+/g, ' ')
-    .trim();
+  return value.replace(/\s+/g, ' ').trim();
 }
 
 function normalizeCategory(category: any): AwardCategory {
@@ -67,7 +59,6 @@ function normalizeCategory(category: any): AwardCategory {
   return {
     categoryName: cleanText(category?.categoryName),
     categoryDescription: cleanText(category?.categoryDescription),
-    year: cleanText(category?.year),
     winnerTitle: cleanText(category?.winnerTitle),
     winnerSubTitle: cleanText(category?.winnerSubTitle),
     nominees,
@@ -338,7 +329,6 @@ The exact structure MUST be:
     {
       "categoryName": "",
       "categoryDescription": "",
-      "year": "",
       "winnerTitle": "",
       "winnerSubTitle": "",
       "nominees": [
@@ -361,9 +351,7 @@ ${source.slice(0, MAX_SOURCE_CHARS)}
 `;
 }
 
-export async function parseAwardWithAI(
-  source: string
-): Promise<AwardAIData> {
+export async function parseAwardWithAI(source: string): Promise<AwardAIData> {
   const apiKey = process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
@@ -445,10 +433,7 @@ export async function parseAwardWithAI(
   try {
     parsed = extractJson(generatedText);
   } catch (error) {
-    strapi.log.error(
-      'Award AI returned invalid JSON:',
-      generatedText
-    );
+    strapi.log.error('Award AI returned invalid JSON:', generatedText);
 
     throw new Error(
       `Failed to parse Gemini award JSON: ${
@@ -460,15 +445,11 @@ export async function parseAwardWithAI(
   const normalized = normalizeAward(parsed);
 
   if (!normalized.title) {
-    strapi.log.warn(
-      'Award AI response does not contain a title.'
-    );
+    strapi.log.warn('Award AI response does not contain a title.');
   }
 
   if (normalized.awardCategories.length === 0) {
-    strapi.log.warn(
-      'Award AI response contains no award categories.'
-    );
+    strapi.log.warn('Award AI response contains no award categories.');
   }
 
   return normalized;
