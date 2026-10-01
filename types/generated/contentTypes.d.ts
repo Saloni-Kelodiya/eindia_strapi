@@ -744,6 +744,7 @@ export interface ApiAwardAward extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    wikipediaUrl: Schema.Attribute.String;
     year: Schema.Attribute.String;
   };
 }
@@ -2088,6 +2089,36 @@ export interface ApiTagTag extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiTrendingTagTrendingTag extends Struct.CollectionTypeSchema {
+  collectionName: 'trending_tags';
+  info: {
+    displayName: 'Trending Tag';
+    pluralName: 'trending-tags';
+    singularName: 'trending-tag';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    firstPublishedAt: Schema.Attribute.DateTime;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::trending-tag.trending-tag'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    rank: Schema.Attribute.Integer;
+    tag: Schema.Attribute.Relation<'oneToOne', 'api::tag.tag'>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiUserArticleUserArticle extends Struct.CollectionTypeSchema {
   collectionName: 'user_articles';
   info: {
@@ -3117,6 +3148,7 @@ declare module '@strapi/strapi' {
       'api::subscription.subscription': ApiSubscriptionSubscription;
       'api::table.table': ApiTableTable;
       'api::tag.tag': ApiTagTag;
+      'api::trending-tag.trending-tag': ApiTrendingTagTrendingTag;
       'api::user-article.user-article': ApiUserArticleUserArticle;
       'api::video.video': ApiVideoVideo;
       'api::web-series-review.web-series-review': ApiWebSeriesReviewWebSeriesReview;

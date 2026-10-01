@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_tag_tags",
+  "info": {
+    "displayName": "Tags"
+  },
+  "options": {},
+  "attributes": {
+    "tag": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tag.tag"
+    },
+    "rank": {
+      "type": "integer"
+    }
+  },
+  "config": {}
+}

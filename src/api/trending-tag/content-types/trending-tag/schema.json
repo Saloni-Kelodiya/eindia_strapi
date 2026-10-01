@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "trending_tags",
+  "info": {
+    "singularName": "trending-tag",
+    "pluralName": "trending-tags",
+    "displayName": "Trending Tag"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "tag": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::tag.tag"
+    },
+    "rank": {
+      "type": "integer"
+    }
+  }
+}

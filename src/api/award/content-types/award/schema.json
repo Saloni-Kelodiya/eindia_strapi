@@ -67,6 +67,9 @@
         "en",
         "hi"
       ]
+    },
+    "wikipediaUrl": {
+      "type": "string"
     }
   }
 }
