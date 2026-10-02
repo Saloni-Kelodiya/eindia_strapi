@@ -141,6 +141,75 @@ function removeDuplicateCategories(categories: AwardCategory[]): AwardCategory[]
   });
 }
 
+/**
+ * Detects industry slug from award title.
+ * Returns a slug string that matches your
+ * Category collection's slug field.
+ *
+ * Your DB slugs: bhojiwood, bollywood, hollywood, korean, ott, tollywood, tv
+ */
+export function detectIndustry(title: string): string {
+  const value = title.toLowerCase();
+
+  if (
+    value.includes('television') ||
+    value.includes('tv') ||
+    value.includes('emmy')
+  ) {
+    return 'tv';
+  }
+
+  if (
+    value.includes('bhojpuri') ||
+    value.includes('bhojiwood')
+  ) {
+    return 'bhojiwood';
+  }
+
+  if (
+    value.includes('korean') ||
+    value.includes('k-drama')
+  ) {
+    return 'korean';
+  }
+
+  if (
+    value.includes('ott') ||
+    value.includes('web series') ||
+    value.includes('streaming')
+  ) {
+    return 'ott';
+  }
+
+  if (
+    value.includes('tollywood') ||
+    value.includes('telugu') ||
+    value.includes('tamil')
+  ) {
+    return 'tollywood';
+  }
+
+  if (
+    value.includes('hollywood') ||
+    value.includes('oscar') ||
+    value.includes('golden globe') ||
+    value.includes('academy award')
+  ) {
+    return 'hollywood';
+  }
+
+  if (
+    value.includes('bollywood') ||
+    value.includes('hindi') ||
+    value.includes('filmfare') ||
+    value.includes('national film award')
+  ) {
+    return 'bollywood';
+  }
+
+  return '';
+}
+
 export function buildAwardPayload(aiData: AwardAIData): StrapiAwardPayload {
   if (!aiData) {
     throw new Error('AI award data is required.');
@@ -178,4 +247,5 @@ export function buildAwardPayload(aiData: AwardAIData): StrapiAwardPayload {
 
 export default {
   buildAwardPayload,
+  detectIndustry,
 };
